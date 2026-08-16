@@ -29,8 +29,8 @@
      loop is exact and there is no video to compress */
   .fog{position:absolute;inset:0;z-index:1;background-repeat:repeat-x;background-size:1600px 100%;
        mix-blend-mode:screen;pointer-events:none;will-change:background-position}
-  .fog.a{background-image:url(fog-a.png);opacity:.55;animation:drift 150s linear infinite}
-  .fog.b{background-image:url(fog-b.png);opacity:.40;animation:drift 78s linear infinite reverse}
+  .fog.a{background-image:url(fog-a.png);opacity:.55;animation:drift 44s linear infinite}
+  .fog.b{background-image:url(fog-b.png);opacity:.40;animation:drift 25s linear infinite reverse}
   @keyframes drift{from{background-position:0 0}to{background-position:-1600px 0}}
   .scrim{position:absolute;inset:0;z-index:2;background:
     radial-gradient(56% 40% at 50% 45%, rgba(6,20,15,.50) 0%, rgba(6,20,15,.26) 58%, transparent 84%),
@@ -54,8 +54,28 @@
 <div class="intro">
   <h1>Rainforest hero — pick one</h1>
   <p>Your images, with mist drifting across them. The drift is CSS, not video — so it is perfectly smooth, loops exactly, and the whole thing weighs a fraction of the video it replaces.</p>
-  <p class="note">Watch for a few seconds; the fog moves slowly on purpose. Tell me 1–6.</p>
+  <p class="note"><b>V is the real video file</b>, first below. <b>1–6 are stills with CSS mist</b> — the fog drifts slowly, give it a few seconds. Tell me V or a number.</p>
 </div>
+<section class="option">
+  <div class="label"><span class="tag">V</span><span class="name">Video version — three images dissolving</span><span class="meta">sequence.mp4 · 2.3 MB · 17s</span></div>
+  <div class="hero">
+    <video src="sequence.mp4" poster="rf1.jpg" autoplay muted loop playsinline preload="metadata"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>
+    <div class="scrim"></div>
+    <div class="inner">
+      <p class="mark">HIMALAYA</p>
+      <h2>A Quieter Kind<br>of Luxury</h2>
+      <p>Clinical skin science and botanical care, delivered slowly.</p>
+      <div class="btns"><span class="btn b1">Book a consultation</span><span class="btn b2">View treatments</span></div>
+    </div>
+  </div>
+  <p style="max-width:1200px;margin:.9rem auto 0;padding:0 1.5rem;font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.65">
+    A real video file: options 1, 4 and 6 dissolving into each other with mist drifting throughout, cycling back to the first.
+    Compare the wrap against the CSS versions above — this is the one place video loses. Encoded losslessly it loops perfectly,
+    but at a shippable size H.264 drifts across near-static frames, so the return to the start can show a faint step.
+  </p>
+</section>
+
 <section class="option">
   <div class="label"><span class="tag">1</span><span class="name">Option 1</span><span class="meta">rf1.jpg</span></div>
   <div class="hero">
@@ -140,26 +160,6 @@
     </div>
   </div>
 </section>
-<section class="option">
-  <div class="label"><span class="tag">V</span><span class="name">Video version — three images dissolving</span><span class="meta">sequence.mp4 · 2.3 MB · 17s</span></div>
-  <div class="hero">
-    <video src="sequence.mp4" poster="rf1.jpg" autoplay muted loop playsinline preload="metadata"
-           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>
-    <div class="scrim"></div>
-    <div class="inner">
-      <p class="mark">HIMALAYA</p>
-      <h2>A Quieter Kind<br>of Luxury</h2>
-      <p>Clinical skin science and botanical care, delivered slowly.</p>
-      <div class="btns"><span class="btn b1">Book a consultation</span><span class="btn b2">View treatments</span></div>
-    </div>
-  </div>
-  <p style="max-width:1200px;margin:.9rem auto 0;padding:0 1.5rem;font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.65">
-    A real video file: options 1, 4 and 6 dissolving into each other with mist drifting throughout, cycling back to the first.
-    Compare the wrap against the CSS versions above — this is the one place video loses. Encoded losslessly it loops perfectly,
-    but at a shippable size H.264 drifts across near-static frames, so the return to the start can show a faint step.
-  </p>
-</section>
-
 <footer>
   Say a number (1&ndash;6) for a still with CSS mist, or <b>V</b> for the video sequence.<br>
   Option 1 is the wide image you sent first — it is the sharpest of the six, since the others
