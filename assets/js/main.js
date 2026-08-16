@@ -54,7 +54,20 @@
         heroVideo.addEventListener('canplay', function () {
           heroVideo.classList.add('is-ready');
         }, { once: true });
-        heroVideo.src = heroVideo.getAttribute('data-hero-video');
+
+        /* Two formats on purpose. Safari and iOS need H.264 in MP4; Chromium
+           builds without proprietary codecs will only decode VP9, and get the
+           WebM. The browser picks the first it can play. */
+        [['data-webm', 'video/webm'], ['data-mp4', 'video/mp4']].forEach(function (pair) {
+          var url = heroVideo.getAttribute(pair[0]);
+          if (!url) return;
+          var source = document.createElement('source');
+          source.src = url;
+          source.type = pair[1];
+          heroVideo.appendChild(source);
+        });
+        heroVideo.load();
+
         // Autoplay can still be refused; the poster simply stays put.
         var played = heroVideo.play();
         if (played && typeof played.catch === 'function') played.catch(function () {});
@@ -65,7 +78,7 @@
 
     // Do not animate a hero nobody is looking at.
     document.addEventListener('visibilitychange', function () {
-      if (!heroVideo.src) return;
+      if (!heroVideo.currentSrc) return;
       if (document.hidden) {
         heroVideo.pause();
       } else {

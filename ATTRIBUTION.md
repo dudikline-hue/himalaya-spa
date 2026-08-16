@@ -31,16 +31,35 @@ Any ID resolves at `https://www.pexels.com/photo/<id>/`.
 
 ## Hero video
 
-`assets/img/hero.mp4` is **not** stock footage. It was generated locally with
-ffmpeg from three Pexels stills — 31196710 (green misted forest), 19174994
-(misted cliff) and 13793150 (pines in fog) — as a slow ken-burns sequence with
-crossfades, graded deep green, fading from and to black so the loop is
-invisible. 1280×720, 23s, ~300 KB.
+Real timelapse footage, not generated stills.
 
-To regenerate it after swapping the source frames, the shape of the command is
-in the project history; the essentials are `zoompan` with `d=1` (using `on` for
-the zoom ramp — with `d>1` ffmpeg multiplies frames and you get a 27-minute
-file), `xfade` between clips, and `fade` in/out at the ends.
+**"Timelapse 2025 Kinnaur Monsoon"** by **Dfromhimalayas** — monsoon cloud
+rolling over pine forest in Kinnaur, Himachal Pradesh, in the Indian Himalaya.
+
+- Source: <https://commons.wikimedia.org/wiki/File:Timelapse_2025_Kinnaur_Monsoon.webm>
+- Licence: **CC BY 4.0** — <https://creativecommons.org/licenses/by/4.0>
+
+**This licence requires credit, unlike the Pexels photographs.** The attribution
+is in the footer of every page (`.footer__credit`). Do not remove it while the
+footage is in use. If you would rather not carry a credit line, replace the
+video with paid stock or your own footage and delete that markup.
+
+Shipped as two files so every browser can play one:
+
+| File | Codec | Size | For |
+|---|---|---|---|
+| `hero.webm` | VP9 | 1.2 MB | Chrome, Edge, Firefox, Chromium builds without proprietary codecs |
+| `hero.mp4` | H.264 High L4.0 | 1.9 MB | Safari, iOS, older Android |
+
+Both are 1920×1080, 16.08s. `hero.jpg` is the video's own first frame, so there
+is no visible jump when playback starts.
+
+Processing applied to the original: an 18-second segment, graded green and
+slightly darkened, with a vignette; the final 2 seconds are crossfaded back over
+the opening 2 seconds so the loop is seamless — measured seam difference is
+~2.4/255, imperceptible. Getting that right means fading the tail **out** over
+the head, not in; fading in leaves a visible jump at both the splice and the
+loop point.
 
 ## Before you launch
 

@@ -401,8 +401,11 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rota
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(115% 85% at 50% 42%, rgba(6, 20, 15, 0.10) 0%, rgba(6, 20, 15, 0.58) 60%, rgba(6, 20, 15, 0.94) 100%),
-    linear-gradient(180deg, rgba(6, 20, 15, 0.72) 0%, rgba(6, 20, 15, 0.06) 34%, rgba(6, 20, 15, 0.30) 62%, var(--bg) 100%);
+    /* a soft veil right where the headline sits - the monsoon cloud runs
+       bright white through the middle of frame and would eat white type */
+    radial-gradient(58% 42% at 50% 47%, rgba(6, 20, 15, 0.62) 0%, rgba(6, 20, 15, 0.34) 55%, transparent 82%),
+    radial-gradient(115% 85% at 50% 42%, rgba(6, 20, 15, 0.06) 0%, rgba(6, 20, 15, 0.52) 62%, rgba(6, 20, 15, 0.94) 100%),
+    linear-gradient(180deg, rgba(6, 20, 15, 0.74) 0%, rgba(6, 20, 15, 0.10) 34%, rgba(6, 20, 15, 0.34) 62%, var(--bg) 100%);
 }
 
 /* a little warmth thrown back up into the frame, like room light */
@@ -416,7 +419,15 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rota
   pointer-events: none;
 }
 
-.hero__inner { max-width: 940px; }
+.hero__inner {
+  max-width: 940px;
+  position: relative;
+  z-index: 1;
+}
+/* the scrim does most of the work; this covers the brightest cloud frames */
+.hero h1,
+.hero__sub,
+.hero__mark { text-shadow: 0 2px 30px rgba(4, 12, 9, 0.55); }
 
 .hero__mark {
   font-family: var(--font-display);
@@ -1350,3 +1361,13 @@ body.is-loading { overflow: hidden; }
   .founders__grid { grid-template-columns: 1fr; }
   .strip { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* CC BY on the hero footage requires a visible credit */
+.footer__credit {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.42);
+  flex-basis: 100%;
+  order: 3;
+}
+.footer__credit a { color: rgba(255, 255, 255, 0.62); text-decoration: underline; text-underline-offset: 2px; }
+.footer__credit a:hover { color: var(--accent); }

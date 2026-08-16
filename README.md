@@ -56,13 +56,19 @@ to darken them.
 **Replace the three `team-*.jpg` portraits before launch** — they are stock
 models standing in for named practitioners.
 
-**5. Hero video.** `index.html` has a full-screen looping background video
-(`assets/img/hero.mp4`, misted Himalayan forest, 300 KB). It is attached by JS
-only when it is worth the bytes — never on screens under 700px, on data-saver,
-on 2G/3G, or for `prefers-reduced-motion`. In all those cases the poster image
-carries the hero instead. To change the footage, drop in a new mp4 at the same
-path and update the `poster` attribute; to remove it, delete the `<video>` tag
-and the hero keeps working.
+**5. Hero video.** `index.html` has a full-screen looping background video of
+monsoon cloud over the Kinnaur Himalaya, shipped as both `hero.webm` (VP9,
+1.2 MB) and `hero.mp4` (H.264, 1.9 MB) — Safari needs the MP4, some Chromium
+builds only decode the WebM, and the browser picks whichever it can play.
+
+It is attached by JS only when it is worth the bytes — never on screens under
+700px, on data-saver, on 2G/3G, or for `prefers-reduced-motion`. In all those
+cases the poster image carries the hero. To change the footage, replace both
+files and regenerate `hero.jpg` from the new first frame. To remove it, delete
+the `<video>` tag; the hero keeps working.
+
+**The footage is CC BY 4.0 and the footer credit is required** — see
+`ATTRIBUTION.md`.
 
 **6. Fonts.** Poppins throughout, loaded from Google Fonts in each `<head>`. To
 self-host, drop the woff2 files in `assets/`, replace the `<link>` with an
