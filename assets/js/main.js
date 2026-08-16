@@ -46,10 +46,13 @@
   var heroVideo = document.querySelector('[data-hero-video]');
   if (heroVideo) {
     var conn = navigator.connection || {};
-    var tooSmall = window.matchMedia('(max-width: 700px)').matches;
     var slowLink = /^(slow-2g|2g|3g)$/.test(conn.effectiveType || '');
+    /* Phones get the video too - a frozen still reads as a broken page. They
+       just get a 960x540 cut of it, which is plenty at that size and a
+       fraction of the bytes. Data-saver and slow links still opt out. */
+    var small = window.matchMedia('(max-width: 900px)').matches;
 
-    if (!reduceMotion && !tooSmall && conn.saveData !== true && !slowLink) {
+    if (!reduceMotion && conn.saveData !== true && !slowLink) {
       var startVideo = function () {
         heroVideo.addEventListener('canplay', function () {
           heroVideo.classList.add('is-ready');
@@ -58,7 +61,13 @@
         /* Two formats on purpose. Safari and iOS need H.264 in MP4; Chromium
            builds without proprietary codecs will only decode VP9, and get the
            WebM. The browser picks the first it can play. */
-        [['data-webm', 'video/webm'], ['data-mp4', 'video/mp4']].forEach(function (pair) {
+        /* H.264 only. VP9 encoded ~2x larger on this footage - dense moving
+           foliage is its worst case - and every browser that matters decodes
+           H.264 anyway. */
+        var pick = small
+          ? [['data-mp4-sm', 'video/mp4']]
+          : [['data-mp4', 'video/mp4']];
+        pick.forEach(function (pair) {
           var url = heroVideo.getAttribute(pair[0]);
           if (!url) return;
           var source = document.createElement('source');

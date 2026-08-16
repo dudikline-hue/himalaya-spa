@@ -401,11 +401,11 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rota
   inset: 0;
   z-index: -1;
   background:
-    /* a soft veil right where the headline sits - the monsoon cloud runs
-       bright white through the middle of frame and would eat white type */
-    radial-gradient(58% 42% at 50% 47%, rgba(6, 20, 15, 0.62) 0%, rgba(6, 20, 15, 0.34) 55%, transparent 82%),
-    radial-gradient(115% 85% at 50% 42%, rgba(6, 20, 15, 0.06) 0%, rgba(6, 20, 15, 0.52) 62%, rgba(6, 20, 15, 0.94) 100%),
-    linear-gradient(180deg, rgba(6, 20, 15, 0.74) 0%, rgba(6, 20, 15, 0.10) 34%, rgba(6, 20, 15, 0.34) 62%, var(--bg) 100%);
+    /* Only as much veil as the type actually needs. Anything heavier and the
+       footage reads as fog rather than a mountainside. */
+    radial-gradient(52% 38% at 50% 46%, rgba(6, 20, 15, 0.34) 0%, rgba(6, 20, 15, 0.16) 58%, transparent 84%),
+    radial-gradient(120% 90% at 50% 42%, transparent 0%, rgba(6, 20, 15, 0.28) 66%, rgba(6, 20, 15, 0.86) 100%),
+    linear-gradient(180deg, rgba(6, 20, 15, 0.60) 0%, transparent 30%, rgba(6, 20, 15, 0.18) 62%, var(--bg) 100%);
 }
 
 /* a little warmth thrown back up into the frame, like room light */
@@ -427,7 +427,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rota
 /* the scrim does most of the work; this covers the brightest cloud frames */
 .hero h1,
 .hero__sub,
-.hero__mark { text-shadow: 0 2px 30px rgba(4, 12, 9, 0.55); }
+.hero__mark { text-shadow: 0 1px 3px rgba(4, 12, 9, 0.45), 0 2px 26px rgba(4, 12, 9, 0.65); }
 
 .hero__mark {
   font-family: var(--font-display);
@@ -1127,8 +1127,8 @@ body.is-loading { overflow: hidden; }
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.22;
-  mix-blend-mode: overlay;
+  opacity: 0.07;
+  mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   animation: grainShift 0.8s steps(3) infinite;
 }

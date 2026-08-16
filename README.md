@@ -57,18 +57,16 @@ to darken them.
 models standing in for named practitioners.
 
 **5. Hero video.** `index.html` has a full-screen looping background video of
-monsoon cloud over the Kinnaur Himalaya, shipped as both `hero.webm` (VP9,
-1.2 MB) and `hero.mp4` (H.264, 1.9 MB) — Safari needs the MP4, some Chromium
-builds only decode the WebM, and the browser picks whichever it can play.
+misted forest ridges — `hero.mp4` (2.3 MB, 1600×900) on desktop and
+`hero-sm.mp4` (784 KB, 960×540) on phones.
 
-It is attached by JS only when it is worth the bytes — never on screens under
-700px, on data-saver, on 2G/3G, or for `prefers-reduced-motion`. In all those
-cases the poster image carries the hero. To change the footage, replace both
-files and regenerate `hero.jpg` from the new first frame. To remove it, delete
-the `<video>` tag; the hero keeps working.
+It plays on mobile too; a frozen still there reads as a broken page. It is
+skipped only for `prefers-reduced-motion`, data-saver, and 2G/3G, where the
+poster takes over. To change the footage, replace both files and regenerate
+`hero.jpg` from the new first frame. To remove it, delete the `<video>` tag.
 
 **The footage is CC BY 4.0 and the footer credit is required** — see
-`ATTRIBUTION.md`.
+`ATTRIBUTION.md`, which also has notes on re-cutting it.
 
 **6. Fonts.** Poppins throughout, loaded from Google Fonts in each `<head>`. To
 self-host, drop the woff2 files in `assets/`, replace the `<link>` with an
