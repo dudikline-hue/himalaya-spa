@@ -140,8 +140,28 @@
     </div>
   </div>
 </section>
+<section class="option">
+  <div class="label"><span class="tag">V</span><span class="name">Video version — three images dissolving</span><span class="meta">sequence.mp4 · 2.3 MB · 17s</span></div>
+  <div class="hero">
+    <video src="sequence.mp4" poster="rf1.jpg" autoplay muted loop playsinline preload="metadata"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1"></video>
+    <div class="scrim"></div>
+    <div class="inner">
+      <p class="mark">HIMALAYA</p>
+      <h2>A Quieter Kind<br>of Luxury</h2>
+      <p>Clinical skin science and botanical care, delivered slowly.</p>
+      <div class="btns"><span class="btn b1">Book a consultation</span><span class="btn b2">View treatments</span></div>
+    </div>
+  </div>
+  <p style="max-width:1200px;margin:.9rem auto 0;padding:0 1.5rem;font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.65">
+    A real video file: options 1, 4 and 6 dissolving into each other with mist drifting throughout, cycling back to the first.
+    Compare the wrap against the CSS versions above — this is the one place video loses. Encoded losslessly it loops perfectly,
+    but at a shippable size H.264 drifts across near-static frames, so the return to the start can show a faint step.
+  </p>
+</section>
+
 <footer>
-  Say a number and I will put it on the site.<br>
+  Say a number (1&ndash;6) for a still with CSS mist, or <b>V</b> for the video sequence.<br>
   Option 1 is the wide image you sent first — it is the sharpest of the six, since the others
   are 1168px wide and have to be enlarged to fill a desktop hero.
 </footer>
