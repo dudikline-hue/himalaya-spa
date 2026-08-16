@@ -43,10 +43,35 @@ page (`.footer__credit`). Do not remove it while the footage is in use.
 
 | File | Size | Used on |
 |---|---|---|
-| `hero.mp4` | 1.2 MB, 1600×900 | Screens above 900px |
-| `hero-sm.mp4` | 361 KB, 960×540 | Phones and small tablets |
+| `hero.mp4` | 2.2 MB, 1600×900 | Screens above 900px |
+| `hero-sm.mp4` | 993 KB, 960×540 | Phones and small tablets |
 
-Both are 7.7s. `hero.jpg` is the video's own first frame.
+Both are 8.0s. `hero.jpg` is the video's own first frame.
+
+### Making the loop actually seamless
+
+Comparing the first and last frame is not sufficient — it misses a jump in
+*motion*, and it misses compression. Measure instead against the clip's own
+average frame-to-frame change:
+
+- **Seam / average frame step** should be at or below 1.0. This cut is
+  **0.95x**, i.e. the wrap is a smaller change than an ordinary frame step.
+- **Also scan for internal spikes.** An earlier cut hid a 14.8x jolt at 0.64s
+  from an exposure flicker in the source. The window used now is chosen to
+  contain no step above 3x.
+
+Two separate causes had to be fixed:
+
+1. **Construction.** Verified by encoding losslessly: the crossfade-tail-over
+   -head build measures 1.11x with no codec in the way, so the geometry was
+   always right.
+2. **Compression.** The encoded version still measured 1.65x, because frame 0
+   is a clean keyframe while the last frame is heavily predicted, so the two
+   carry different noise. Fixed with `-bf 0 -g 50 -keyint_min 50
+   -sc_threshold 0` — no B-frames and a closed GOP make frame quality uniform
+   across the wrap. This costs roughly 1 MB, which is the reason the file is
+   2.2 MB rather than 1.2 MB. Revert those flags if you would rather have the
+   smaller file and can live with a faint shimmer at the loop.
 
 ### How this cut was chosen
 
