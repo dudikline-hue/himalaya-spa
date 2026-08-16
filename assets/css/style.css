@@ -403,9 +403,9 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rota
   background:
     /* Only as much veil as the type actually needs. Anything heavier and the
        footage reads as fog rather than a mountainside. */
-    radial-gradient(52% 38% at 50% 46%, rgba(6, 20, 15, 0.34) 0%, rgba(6, 20, 15, 0.16) 58%, transparent 84%),
-    radial-gradient(120% 90% at 50% 42%, transparent 0%, rgba(6, 20, 15, 0.28) 66%, rgba(6, 20, 15, 0.86) 100%),
-    linear-gradient(180deg, rgba(6, 20, 15, 0.60) 0%, transparent 30%, rgba(6, 20, 15, 0.18) 62%, var(--bg) 100%);
+    radial-gradient(56% 40% at 50% 45%, rgba(6, 20, 15, 0.50) 0%, rgba(6, 20, 15, 0.26) 58%, transparent 84%),
+    radial-gradient(120% 90% at 50% 42%, transparent 0%, rgba(6, 20, 15, 0.24) 66%, rgba(6, 20, 15, 0.88) 100%),
+    linear-gradient(180deg, rgba(6, 20, 15, 0.62) 0%, transparent 32%, rgba(6, 20, 15, 0.16) 60%, var(--bg) 100%);
 }
 
 /* a little warmth thrown back up into the frame, like room light */
