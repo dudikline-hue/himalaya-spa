@@ -1371,3 +1371,12 @@ body.is-loading { overflow: hidden; }
 }
 .footer__credit a { color: rgba(255, 255, 255, 0.62); text-decoration: underline; text-underline-offset: 2px; }
 .footer__credit a:hover { color: var(--accent); }
+
+/* The owner is Maya, and HI-MA-LA-YA already contains it. Lifting those two
+   syllables into the accent tone makes the name carry her name. */
+.wm-maya { color: var(--accent); }
+/* MAYA must be the accented pair everywhere. The hero mark was already gold,
+   so it is dimmed to white instead - inverting it put the emphasis on HI/LA. */
+.hero__mark { color: rgba(255, 255, 255, 0.78); }
+.hero__mark .wm-maya { color: var(--accent-lift); }
+.curtain__mark .wm-maya { color: var(--accent); }
