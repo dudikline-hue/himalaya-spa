@@ -39,47 +39,54 @@
     });
   }
 
-  /* ---- hero background video -------------------------------------------- */
-  /* The <video> ships with no src. We attach one only when it is worth the
-     bytes, so the poster image carries the hero on phones, metered
-     connections, and for anyone who has asked for less motion. */
+  /* ---- background video -------------------------------------------------- */
+  /* Ships with no src so we can decide whether it is worth the bytes. */
   var heroVideo = document.querySelector('[data-hero-video]');
   if (heroVideo) {
     var conn = navigator.connection || {};
-    var slowLink = /^(slow-2g|2g|3g)$/.test(conn.effectiveType || '');
-    /* Phones get the video too - a frozen still reads as a broken page. They
-       just get a 960x540 cut of it, which is plenty at that size and a
-       fraction of the bytes. Data-saver and slow links still opt out. */
+    /* Only genuinely slow links opt out. This used to include 3g, but phones
+       on ordinary cellular report effectiveType "3g" all the time, which meant
+       the video silently never loaded on mobile. */
+    var slowLink = /^(slow-2g|2g)$/.test(conn.effectiveType || '');
     var small = window.matchMedia('(max-width: 900px)').matches;
 
     if (!reduceMotion && conn.saveData !== true && !slowLink) {
-      var startVideo = function () {
-        heroVideo.addEventListener('canplay', function () {
-          heroVideo.classList.add('is-ready');
-        }, { once: true });
+      var reveal = function () { heroVideo.classList.add('is-ready'); };
 
-        /* Two formats on purpose. Safari and iOS need H.264 in MP4; Chromium
-           builds without proprietary codecs will only decode VP9, and get the
-           WebM. The browser picks the first it can play. */
-        /* H.264 only. VP9 encoded ~2x larger on this footage - dense moving
-           foliage is its worst case - and every browser that matters decodes
-           H.264 anyway. */
-        var pick = small
-          ? [['data-mp4-sm', 'video/mp4']]
-          : [['data-mp4', 'video/mp4']];
-        pick.forEach(function (pair) {
-          var url = heroVideo.getAttribute(pair[0]);
-          if (!url) return;
+      var startVideo = function () {
+        /* Reveal on whichever event arrives first. Relying on canplay alone
+           left the video playing behind opacity:0 on iOS, which looks exactly
+           like the video failing to start. */
+        ['loadeddata', 'canplay', 'canplaythrough', 'playing'].forEach(function (ev) {
+          heroVideo.addEventListener(ev, reveal, { once: true });
+        });
+        // last resort: if it has frames, show it regardless of which events fired
+        setTimeout(function () { if (heroVideo.readyState >= 2) reveal(); }, 2500);
+
+        var url = heroVideo.getAttribute(small ? 'data-mp4-sm' : 'data-mp4');
+        if (url) {
           var source = document.createElement('source');
           source.src = url;
-          source.type = pair[1];
+          source.type = 'video/mp4';
           heroVideo.appendChild(source);
-        });
-        heroVideo.load();
+          heroVideo.load();
+        }
 
-        // Autoplay can still be refused; the poster simply stays put.
-        var played = heroVideo.play();
-        if (played && typeof played.catch === 'function') played.catch(function () {});
+        var tryPlay = function () {
+          var played = heroVideo.play();
+          if (played && typeof played.catch === 'function') played.catch(function () {});
+        };
+        tryPlay();
+
+        /* iOS refuses autoplay outright in Low Power Mode, and occasionally
+           until the page has been touched. Retry once on the first interaction
+           rather than leaving a frozen poster. */
+        ['touchstart', 'click'].forEach(function (ev) {
+          document.addEventListener(ev, function once() {
+            document.removeEventListener(ev, once);
+            if (heroVideo.paused) tryPlay();
+          }, { passive: true });
+        });
       };
       if (document.readyState === 'complete') startVideo();
       else window.addEventListener('load', startVideo, { once: true });
