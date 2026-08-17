@@ -27,6 +27,13 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
+<div class="backdrop" aria-hidden="true">
+  <video class="backdrop__video" data-hero-video
+         data-mp4="assets/img/hero.mp4" data-mp4-sm="assets/img/hero-sm.mp4"
+         poster="assets/img/hero.jpg" muted loop playsinline preload="none"
+         role="presentation" tabindex="-1"></video>
+</div>
+
 <div class="curtain" aria-hidden="true">
   <span class="curtain__mark">HI<span class="wm-maya">MA</span>LA<span class="wm-maya">YA</span></span>
   <span class="curtain__line"></span>
@@ -58,11 +65,6 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero__bg photo--hero"></div>
-    <video class="hero__video" data-hero-video
-           data-mp4="assets/img/hero.mp4" data-mp4-sm="assets/img/hero-sm.mp4"
-           poster="assets/img/hero.jpg" muted loop playsinline
-           preload="none" role="presentation" aria-hidden="true" tabindex="-1"></video>
     <div class="hero__scrim"></div>
     <div class="grain" aria-hidden="true"></div>
     <div class="hero__inner">

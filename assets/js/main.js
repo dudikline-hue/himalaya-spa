@@ -298,24 +298,8 @@
     });
   });
 
-  /* ---- hero parallax ------------------------------------------------------- */
-  var parallaxLayers = document.querySelectorAll('.hero__video, .hero__bg');
-  if (parallaxLayers.length && !reduceMotion) {
-    var pQueued = false;
-    var applyParallax = function () {
-      pQueued = false;
-      var y = window.scrollY;
-      if (y > window.innerHeight * 1.2) return;   // only while the hero is near
-      parallaxLayers.forEach(function (layer) {
-        layer.style.transform = 'scale(1.06) translate3d(0,' + (y * 0.22) + 'px,0)';
-      });
-    };
-    window.addEventListener('scroll', function () {
-      if (pQueued) return;
-      pQueued = true;
-      requestAnimationFrame(applyParallax);
-    }, { passive: true });
-  }
+  /* Parallax removed: the backdrop is position:fixed, which already
+     gives the parallax effect for free. */
 
   /* ---- gallery lightbox ---------------------------------------------------- */
   var strip = document.querySelector('.strip');
