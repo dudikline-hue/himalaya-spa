@@ -1,332 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex,nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Himalaya | Luxury Wellness Spa &amp; Advanced Skincare</title>
-<meta name="description" content="Himalaya is a luxury wellness spa pairing clinical skin science with botanical care. Advanced facials, body therapies and memberships. Book a complimentary consultation.">
-<meta name="theme-color" content="#06140F">
-<meta property="og:title" content="Himalaya | Luxury Wellness Spa">
-<meta property="og:description" content="Clinical skin science, botanical care. Advanced facials, body therapies and memberships.">
-<meta property="og:type" content="website">
+<title>Himalaya — Skin &amp; Body</title>
+<meta name="description" content="Skin &amp; Body">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<noscript>
-  <style>
-    /* Without scripting nothing can add .is-in, so reveal everything up front
-       rather than serving a page of invisible sections. */
-    [data-reveal] { opacity: 1 !important; transform: none !important; }
-    [data-reveal] .photo, .photo[data-reveal] { clip-path: inset(0 0 0 0) !important; }
-    .curtain { display: none !important; }
-  </style>
-</noscript>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #06140F;
+  --bg-raise: #0A1E17;
+  --bg-band: #081A14;
+  --surface: rgba(255,255,255,0.06);
+  --surface-2: rgba(255,255,255,0.11);
+  --hairline: rgba(255,255,255,0.12);
+  --text: #FFFFFF;
+  --text-soft: rgba(255,255,255,0.82);
+  --text-muted: rgba(255,255,255,0.58);
+  --accent: #D8BE92;
+  --accent-deep: #B99B66;
+  --font-display: Poppins, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: Poppins, -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 16px;
+  --shade: rgba(6,20,15,0.88);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+     font:300 16px/1.7 var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,video{max-width:100%;display:block}
+
+/* The video sits behind every page and each section shades it, which is what
+   gives the whole site one continuous backdrop instead of a hero and then a
+   flat page. */
+.backdrop{position:fixed;inset:0;z-index:-2;overflow:hidden;background:var(--bg)}
+.backdrop video,.backdrop img{width:100%;height:100%;object-fit:cover}
+.backdrop::after{content:"";position:absolute;inset:0;background:var(--shade)}
+
+.shell{max-width:1180px;margin:0 auto;padding:0 1.6rem}
+.band{background:var(--shade);backdrop-filter:blur(2px)}
+.band--solid{background:var(--bg-band)}
+
+header.site{position:sticky;top:0;z-index:50;background:rgba(6,20,15,.72);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline)}
+header .shell{display:flex;align-items:center;gap:2rem;height:72px}
+.brand{font:500 1rem/1 var(--font-display);letter-spacing:.26em;text-decoration:none;white-space:nowrap}
+.brand i{font-style:normal;color:var(--accent)}
+nav.site{display:flex;gap:1.6rem;margin-left:auto;align-items:center}
+nav.site a{text-decoration:none;font-size:.88rem;color:var(--text-muted);letter-spacing:.02em}
+nav.site a:hover,nav.site a.on{color:var(--text)}
+.book-btn{padding:.6rem 1.4rem;border-radius:999px;background:var(--accent);color:#06140F !important;
+  font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.menu-toggle{display:none;background:none;border:0;color:var(--text);font-size:1.4rem;cursor:pointer;margin-left:auto}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:300;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.05}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.15}
+h3{font-size:1.15rem;font-weight:400}
+p{margin:0 0 1.1rem}
+.eyebrow{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.lede{font-size:1.15rem;color:var(--text-soft);font-weight:200;max-width:44ch}
+.muted{color:var(--text-muted)}
+section{padding:clamp(4rem,9vw,7.5rem) 0}
+.rule{height:1px;background:var(--hairline);border:0;margin:0}
+
+.btn{display:inline-block;padding:.95rem 2.2rem;border-radius:999px;background:var(--accent);
+  color:#06140F;text-decoration:none;font-weight:500;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--hairline)}
+
+.grid{display:grid;gap:1.4rem}
+.grid--3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.grid--2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);padding:1.8rem}
+
+/* Treatment menu: name and dotted leader to the price, like a printed card. */
+.menu-item{display:flex;align-items:baseline;gap:.9rem;padding:1.15rem 0;border-bottom:1px solid var(--hairline)}
+.menu-item:last-child{border-bottom:0}
+.menu-item__name{font-size:1.05rem;font-weight:400}
+.menu-item__dots{flex:1;border-bottom:1px dotted rgba(255,255,255,.22);transform:translateY(-4px)}
+.menu-item__price{font-size:1.05rem;color:var(--accent);white-space:nowrap}
+.menu-item__meta{display:block;font-size:.84rem;color:var(--text-muted);margin-top:.25rem;font-weight:300}
+
+footer.site{background:var(--bg-band);border-top:1px solid var(--hairline);padding:4rem 0 2.5rem;font-size:.9rem}
+footer.site .cols{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+footer.site h4{font:400 .72rem/1 var(--font-display);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 1rem}
+footer.site a{text-decoration:none;color:var(--text-muted)}
+footer.site a:hover{color:var(--text)}
+.legal{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--hairline);
+  color:var(--text-muted);font-size:.8rem;display:flex;gap:1rem;flex-wrap:wrap}
+
+@media (max-width:820px){
+  .menu-toggle{display:block}
+  nav.site{position:fixed;inset:72px 0 auto;flex-direction:column;background:var(--bg-band);
+    padding:1.5rem;gap:1.2rem;border-bottom:1px solid var(--hairline);display:none}
+  nav.site.open{display:flex}
+  nav.site a{font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+</style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="backdrop" aria-hidden="true">
-  <video class="backdrop__video" data-hero-video
-         data-mp4="assets/img/hero.mp4" data-mp4-sm="assets/img/hero-sm.mp4"
-         poster="assets/img/hero.jpg" autoplay muted loop playsinline preload="none"
-         role="presentation" tabindex="-1"></video>
+<div class="backdrop">
+  <video autoplay muted loop playsinline preload="metadata"
+         poster="assets/img/hero.jpg">
+    <source src="assets/img/hero.mp4" type="video/mp4">
+  </video>
 </div>
 
-<div class="curtain" aria-hidden="true">
-  <span class="curtain__mark">HI<span class="wm-maya">MA</span>LA<span class="wm-maya">YA</span></span>
-  <span class="curtain__line"></span>
-</div>
-
-
-<header class="header">
-  <div class="wrap header__inner">
-    <a class="brand" href="index.html">
-      <span class="brand__name">HI<span class="wm-maya">MA</span>LA<span class="wm-maya">YA</span></span>
-      <span class="brand__tag">Skin &amp; Body</span>
-    </a>
-    <nav class="nav" aria-label="Primary">
-      <a class="nav__link is-active" href="index.html">Home</a>
-      <a class="nav__link" href="about.html">About</a>
-      <a class="nav__link" href="treatments.html">Treatments</a>
-      <a class="nav__link" href="first-visit.html">First Visit</a>
-      <a class="nav__link" href="memberships.html">Memberships</a>
-      <a class="nav__link" href="contact.html">Contact</a>
-      <a class="btn btn--primary nav__cta" href="contact.html">Book a consultation</a>
+<header class="site">
+  <div class="shell">
+    <a class="brand" href="index.html">HI<i>MA</i>LA<i>YA</i></a>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <nav class="site">
+              <a class="on" href="index.html">Home</a>
+              <a class="" href="treatments.html">Treatments</a>
+              <a class="" href="shop.html">Shop</a>
+              <a class="" href="plans.html">Memberships</a>
+              <a class="" href="team.html">Practitioners</a>
+              <a class="" href="visit.html">Your first visit</a>
+              <a class="" href="contact.html">Contact</a>
+              <a class="" href="signin.html">My account</a>
+            <a class="book-btn" href="book.html">Book</a>
     </nav>
-    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
   </div>
 </header>
 
-<main id="main">
+<section style="min-height:82vh;display:flex;align-items:center;padding-top:6rem">
+  <div class="shell">
+    <p class="eyebrow">Sacramento, since 2019</p>
+    <h1>Quiet is a treatment.</h1>
+    <p class="lede" style="margin:1.8rem 0 2.6rem">An unhurried hour, a warm room, and hands that know what they are doing. Nothing rushed, nothing upsold.</p>
+    <a class="btn" href="book.html">Book a treatment</a>
+  </div>
+</section>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero__scrim"></div>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="hero__inner">
-      <p class="hero__mark" data-reveal>HI<span class="wm-maya">MA</span>LA<span class="wm-maya">YA</span></p>
-      <h1 data-split>A Quieter Kind<br>of Luxury</h1>
-      <p class="hero__sub" data-reveal data-delay="2">
-        Clinical skin science and botanical care, delivered slowly.
-        Treatments designed around your skin — not a menu.
-      </p>
-      <div class="btn-row center" data-reveal data-delay="3">
-        <a class="btn btn--primary" href="contact.html">Book a consultation</a>
-        <a class="btn btn--soft" href="treatments.html">View treatments</a>
-      </div>
-    </div>
-    <span class="hero__scroll" aria-hidden="true">Scroll</span>
-  </section>
+<div class="band">
+  <section>
+    <div class="shell">
+      <h2 style="max-width:20ch">Fewer treatments, done slowly</h2>
+      <p class="lede" style="margin-top:1.6rem;max-width:60ch">Himalaya is one room, two practitioners and a treatment list short enough to remember. Every appointment includes the time it actually takes — if a mask needs twenty minutes to set, those twenty minutes are yours and nobody is standing over you waiting for the room.</p>
 
-  <!-- Philosophy -->
-  <section class="section section--lit">
-    <div class="wrap wrap--narrow center">
-      <p class="eyebrow" data-reveal>Our philosophy</p>
-      <p class="statement" data-reveal data-delay="1">
-        We believe skin responds to <em>consistency</em>, not intensity.
-        Every ritual here is built to be repeatable, restorative,
-        and quietly effective over years — not weeks.
-      </p>
-      <div class="divider" aria-hidden="true"><span></span></div>
-      <div class="btn-row center" data-reveal data-delay="2">
-        <a class="btn btn--ghost" href="about.html">Our approach</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Signature treatments -->
-  <section class="section section--band" id="signature">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <p class="eyebrow">Signature rituals</p>
-        <h2>Four ways to begin</h2>
-        <p class="lede">Each ritual pairs a clinical modality with a botanical finish. All include a skin reading and an aftercare plan.</p>
-      </div>
-
-      <div class="grid grid--4">
-        <article class="card" data-reveal>
-          <div class="photo photo--tall photo--ritual-1" role="img" aria-label="Hydration facial treatment"></div>
-          <div class="card__meta"><span>Facial</span><span>75 min</span></div>
-          <h3>Cedar Hydration</h3>
-          <p>Layered hyaluronic infusion with a cold botanical seal. For skin that reads tight, dull, or travel-worn.</p>
-          <p class="card__price">$185</p>
-        </article>
-
-        <article class="card" data-reveal data-delay="1">
-          <div class="photo photo--tall photo--ritual-2" role="img" aria-label="Brightening facial treatment"></div>
-          <div class="card__meta"><span>Facial</span><span>60 min</span></div>
-          <h3>Sunveil Renew</h3>
-          <p>A gentle enzymatic resurfacing that softens pigment and sun texture without downtime.</p>
-          <p class="card__price">$210</p>
-        </article>
-
-        <article class="card" data-reveal data-delay="2">
-          <div class="photo photo--tall photo--ritual-3" role="img" aria-label="Microinfusion therapy"></div>
-          <div class="card__meta"><span>Advanced</span><span>90 min</span></div>
-          <h3>Nano Infusion</h3>
-          <p>Micro-channel delivery of peptides and growth factors. Our most requested treatment for firmness.</p>
-          <p class="card__price">$340</p>
-        </article>
-
-        <article class="card" data-reveal data-delay="3">
-          <div class="photo photo--tall photo--ritual-4" role="img" aria-label="Sculpting lift treatment"></div>
-          <div class="card__meta"><span>Advanced</span><span>90 min</span></div>
-          <h3>Timeless Lift</h3>
-          <p>Radiofrequency and sculpting massage to lift the jawline and restore definition.</p>
-          <p class="card__price">$395</p>
-        </article>
-      </div>
-
-      <div class="btn-row center" style="margin-top:3.5rem" data-reveal>
-        <a class="btn btn--soft" href="treatments.html">See the full menu</a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Marquee ribbon -->
-  <section class="ribbon" aria-hidden="true">
-    <div class="ribbon__track">
-      <div class="ribbon__item">Cedar Hydration</div>
-      <div class="ribbon__item">Sunveil Renew</div>
-      <div class="ribbon__item">Nano Infusion</div>
-      <div class="ribbon__item">Timeless Lift</div>
-      <div class="ribbon__item">Lymphatic Reset</div>
-      <div class="ribbon__item">Mineral Wrap</div>
-      <div class="ribbon__item">Cedar Hydration</div>
-      <div class="ribbon__item">Sunveil Renew</div>
-      <div class="ribbon__item">Nano Infusion</div>
-      <div class="ribbon__item">Timeless Lift</div>
-      <div class="ribbon__item">Lymphatic Reset</div>
-      <div class="ribbon__item">Mineral Wrap</div>
-    </div>
-  </section>
-
-  <!-- Stats -->
-  <section class="stats">
-    <div class="stats__bg photo--stats"></div>
-    <div class="stats__scrim"></div>
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <h2>Care, measured</h2>
-      </div>
-      <div class="stats__grid">
-        <div data-reveal>
-          <p class="stat__num"><span data-count="12">0</span></p>
-          <p class="stat__label">Years in practice</p>
-        </div>
-        <div data-reveal data-delay="1">
-          <p class="stat__num"><span data-count="240">0</span><span class="unit">+</span></p>
-          <p class="stat__label">Treatments monthly</p>
-        </div>
-        <div data-reveal data-delay="2">
-          <p class="stat__num"><span data-count="94">0</span><span class="unit">%</span></p>
-          <p class="stat__label">Botanical formulations</p>
-        </div>
-        <div data-reveal data-delay="3">
-          <p class="stat__num"><span data-count="3800">0</span><span class="unit">+</span></p>
-          <p class="stat__label">Clients cared for</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Memberships -->
-  <section class="section">
-    <div class="wrap">
-      <div class="panel">
-        <div class="split split--wide-right">
-          <div data-reveal>
-            <p class="eyebrow">Memberships</p>
-            <h2>Results belong<br>to the regular</h2>
-            <p class="lede">Skin is a habit, not an event. Our members come monthly, pay less per visit, and keep a standing appointment that is theirs alone.</p>
-            <p class="muted" style="margin-top:1.25rem">Members receive priority booking, 20% off retail, and one guest ritual each year.</p>
-            <div class="btn-row" style="margin-top:2rem">
-              <a class="btn btn--primary" href="memberships.html">Compare memberships</a>
-            </div>
+      <div class="grid grid--3" style="margin-top:3.5rem">
+                  <div class="card">
+            <h3 style="color:var(--accent);margin-bottom:.8rem">No clock-watching</h3>
+            <p class="muted" style="margin:0">Processing time is booked time.</p>
           </div>
-          <div class="photo photo--wide photo--warm photo--membership" role="img" aria-label="Treatment room at Himalaya" data-reveal data-delay="1"></div>
-        </div>
-      </div>
+                  <div class="card">
+            <h3 style="color:var(--accent);margin-bottom:.8rem">The same hands</h3>
+            <p class="muted" style="margin:0">Your notes travel with you.</p>
+          </div>
+              </div>
     </div>
   </section>
+</div>
 
-  <!-- Testimonials -->
-  <section class="section section--band">
-    <div class="wrap wrap--narrow">
-      <div class="section-head center" data-reveal>
-        <p class="eyebrow">In their words</p>
-      </div>
-      <div class="quotes" data-reveal>
-        <figure class="quote">
-          <blockquote>I came in for one facial and left with an actual plan. Six months on, my skin has never been steadier.</blockquote>
-          <figcaption>Marisa L. — Member since 2023</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>The only place that has never tried to sell me something I did not need.</blockquote>
-          <figcaption>Daniel R. — Nano Infusion</figcaption>
-        </figure>
-        <figure class="quote">
-          <blockquote>Unhurried, precise, and genuinely restful. I book the last appointment of the day just to stay longer.</blockquote>
-          <figcaption>Priya N. — Member since 2022</figcaption>
-        </figure>
-      </div>
-      <div class="quote-dots" role="tablist" aria-label="Testimonials"></div>
+<div class="band band--solid">
+  <section>
+    <div class="shell">
+      <p class="eyebrow">The menu</p>
+      <h2>What we do</h2>
+      <div class="grid grid--2" style="margin-top:2.8rem">
+                  <div>
+            <h3 style="color:var(--accent);margin-bottom:.6rem">Facials</h3>
+                          <div class="menu-item">
+                <div style="flex:1">
+                  <span class="menu-item__name">Cedar Hydration</span>
+                  <span class="menu-item__meta">60 minutes</span>
+                </div>
+                <span class="menu-item__price">$185.00</span>
+              </div>
+                          <div class="menu-item">
+                <div style="flex:1">
+                  <span class="menu-item__name">Express Add-on</span>
+                  <span class="menu-item__meta">20 minutes</span>
+                </div>
+                <span class="menu-item__price">$45.00</span>
+              </div>
+                          <div class="menu-item">
+                <div style="flex:1">
+                  <span class="menu-item__name">Sunveil Renew</span>
+                  <span class="menu-item__meta">60 minutes</span>
+                </div>
+                <span class="menu-item__price">$210.00</span>
+              </div>
+                      </div>
+                  <div>
+            <h3 style="color:var(--accent);margin-bottom:.6rem">Body</h3>
+                          <div class="menu-item">
+                <div style="flex:1">
+                  <span class="menu-item__name">The Long Ritual</span>
+                  <span class="menu-item__meta">120 minutes</span>
+                </div>
+                <span class="menu-item__price">$450.00</span>
+              </div>
+                      </div>
+              </div>
+      <p style="margin-top:2.6rem"><a class="btn ghost" href="treatments.html">See the full list</a></p>
     </div>
   </section>
+</div>
 
-
-  <!-- Gallery strip -->
-  <section class="section section--band">
-    <div class="wrap">
-      <div class="section-head center" data-reveal>
-        <p class="eyebrow">The studio</p>
-        <h2>A look inside</h2>
-      </div>
-      <div class="strip" data-reveal>
-        <button type="button"><img src="assets/img/studio.jpg" alt="Candlelit corner of the studio" loading="lazy"></button>
-        <button type="button"><img src="assets/img/ritual-1.jpg" alt="A hydration ritual in progress" loading="lazy"></button>
-        <button type="button"><img src="assets/img/membership.jpg" alt="The treatment room" loading="lazy"></button>
-        <button type="button"><img src="assets/img/ritual-4.jpg" alt="Facial massage" loading="lazy"></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- First visit offer -->
-  <section class="section">
-    <div class="wrap">
-      <div class="offer" data-reveal>
-        <div>
-          <p class="eyebrow">First visit</p>
-          <h2>Begin with a reading</h2>
-          <p>Your first appointment starts with a complimentary consultation and skin analysis. We will tell you honestly what you need — and what you do not.</p>
-        </div>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="first-visit.html">What to expect</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer__grid">
-      <div>
-        <a class="brand" href="index.html">
-          <span class="brand__name">HI<span class="wm-maya">MA</span>LA<span class="wm-maya">YA</span></span>
-          <span class="brand__tag">Skin &amp; Body</span>
-        </a>
-        <p class="footer__blurb">A luxury wellness studio pairing clinical skin science with botanical care.</p>
-      </div>
+<footer class="site">
+  <div class="shell">
+    <div class="cols">
       <div>
         <h4>Visit</h4>
-        <ul>
-          <li><a href="contact.html">1420 Alder Street<br>Suite 200, Your City</a></li>
-          <li><a href="tel:+15550000000">+1 (555) 000-0000</a></li>
-          <li><a href="mailto:hello@himalaya.example">hello@himalaya.example</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Explore</h4>
-        <ul>
-          <li><a href="treatments.html">Treatments</a></li>
-          <li><a href="memberships.html">Memberships</a></li>
-          <li><a href="first-visit.html">First visit</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </div>
+                  <p class="muted" style="margin:0">
+            1420 Alder Street, Suite 200<br>
+            Your City            CA 00000          </p>
+              </div>
       <div>
         <h4>Hours</h4>
-        <ul>
-          <li>Mon — Fri · 10 – 7</li>
-          <li>Saturday · 10 – 5</li>
-          <li>Sunday · Closed</li>
-        </ul>
+                  <div class="muted" style="display:flex;gap:1rem;justify-content:space-between;max-width:15rem">
+            <span>Sunday</span><span>Closed</span>
+          </div>
+                  <div class="muted" style="display:flex;gap:1rem;justify-content:space-between;max-width:15rem">
+            <span>Mon – Wed</span><span>9am – 7pm</span>
+          </div>
+                  <div class="muted" style="display:flex;gap:1rem;justify-content:space-between;max-width:15rem">
+            <span>Thursday</span><span>9am – 8pm</span>
+          </div>
+                  <div class="muted" style="display:flex;gap:1rem;justify-content:space-between;max-width:15rem">
+            <span>Fri – Sat</span><span>9am – 7pm</span>
+          </div>
+              </div>
+      <div>
+        <h4>Contact</h4>
+                  <p style="margin:0 0 .4rem"><a href="tel:5550102200">(555) 010-2200</a></p>
+                          <p style="margin:0"><a href="mailto:hello@himalaya.example">hello@himalaya.example</a></p>
+              </div>
+      <div>
+        <h4>Book</h4>
+        <p class="muted" style="margin:0 0 1rem">Live availability, no phone tag.</p>
+        <a class="btn" style="padding:.7rem 1.6rem" href="book.html">Book now</a>
       </div>
     </div>
-    <div class="footer__bottom">
-      <span>&copy; <span data-year>2026</span> Himalaya. All rights reserved.</span>
-      <div class="social">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Google</a>
-      </div>
+    <div class="legal">
+      <span>&copy; 2026 Himalaya</span>
+      <span class="muted" style="margin-left:auto">Site and booking by Salon OS</span>
     </div>
   </div>
 </footer>
 
-
-<div class="lightbox" role="dialog" aria-modal="true" aria-label="Photograph">
-  <button class="lightbox__close" type="button" aria-label="Close">&#215;</button>
-  <img src="" alt="">
-</div>
-
-<script src="assets/js/main.js"></script>
-</body>
+<script>
+// The nav is a plain list until this runs, so it works without JavaScript.
+(function () {
+  var t = document.querySelector('.menu-toggle'), n = document.querySelector('nav.site');
+  if (!t || !n) { return; }
+  t.addEventListener('click', function () {
+    var open = n.classList.toggle('open');
+    t.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+})();
+</script>
+<div style="position:fixed;left:0;right:0;bottom:0;z-index:999;background:rgba(216,190,146,.95);color:#06140F;font:400 13px/1.5 -apple-system,sans-serif;padding:.6rem 1rem;text-align:center">Design preview — booking, the shop and accounts need the full install to work.</div><script>function previewOnly(){alert("This is a design preview. Booking and ordering work on the installed version.");return false;}</script></body>
 </html>
